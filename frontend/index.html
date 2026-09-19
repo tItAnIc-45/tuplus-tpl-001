@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nombre del negocio | Servicios profesionales</title>
+  <meta name="description" content="Plantilla TPL-001 · Servicios profesionales. Landing page de una sola página.">
+  <link rel="stylesheet" href="CSS/styles.css">
+  <!-- data.js va ANTES de main.js: main.js lee el objeto SITE -->
+  <script src="JS/data.js" defer></script>
+  <script src="JS/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ============ HEADER (BL-01) ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" data-site="nombre">Nombre del negocio</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+
+      <nav id="menu-principal" class="nav" aria-label="Principal">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botón de contacto siempre visible, también en móvil -->
+      <a class="btn btn-primary header-cta" href="#contacto">Contáctanos</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============ HERO (BL-01) ============ -->
+    <section id="inicio" class="hero" aria-labelledby="hero-titulo">
+      <div class="container hero-inner">
+        <h1 id="hero-titulo" data-site="titulo">Asesoría profesional clara, cuando la necesitas</h1>
+        <p class="hero-texto" data-site="subtitulo">
+          Texto de ejemplo: explica en una o dos frases qué hace el negocio y a quién ayuda.
+        </p>
+        <!-- Acciones rápidas (idea tomada de Clínica Risso, adaptada) -->
+        <div class="hero-acciones">
+          <a class="btn btn-primary" href="#contacto">Contáctanos</a>
+          <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+          <a class="btn btn-secondary" href="#" data-whatsapp target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS (BL-02) ============ -->
+    <section id="servicios" class="section" aria-labelledby="servicios-titulo">
+      <div class="container">
+        <h2 id="servicios-titulo">Servicios</h2>
+        <div id="lista-servicios" class="grid"></div>
+      </div>
+    </section>
+
+    <!-- ============ EQUIPO (BL-03) ============ -->
+    <section id="equipo" class="section section-alt" aria-labelledby="equipo-titulo">
+      <div class="container">
+        <h2 id="equipo-titulo">Nuestro equipo</h2>
+        <div id="lista-equipo" class="grid"></div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIOS (BL-04) ============ -->
+    <section id="testimonios" class="section" aria-labelledby="testimonios-titulo">
+      <div class="container">
+        <h2 id="testimonios-titulo">Lo que dicen nuestros clientes</h2>
+        <div id="lista-testimonios" class="grid"></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO (BL-05) ============ -->
+    <section id="contacto" class="section section-alt" aria-labelledby="contacto-titulo">
+      <div class="container">
+        <h2 id="contacto-titulo">Contacto</h2>
+        <p>Cuéntanos qué necesitas y te responderemos lo antes posible. Todos los campos son obligatorios.</p>
+
+        <form id="form-contacto" class="form" novalidate>
+          <div class="campo">
+            <label for="campo-nombre">Nombre</label>
+            <input id="campo-nombre" name="nombre" type="text" autocomplete="name" maxlength="100" required aria-describedby="error-nombre">
+            <p id="error-nombre" class="error-campo" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="campo-contacto">Teléfono o correo</label>
+            <input id="campo-contacto" name="contacto" type="text" maxlength="100" required aria-describedby="error-contacto">
+            <p id="error-contacto" class="error-campo" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="campo-mensaje">¿En qué podemos ayudarte?</label>
+            <textarea id="campo-mensaje" name="mensaje" rows="5" maxlength="1000" required aria-describedby="error-mensaje"></textarea>
+            <p id="error-mensaje" class="error-campo" hidden></p>
+          </div>
+
+          <!-- Trampa anti-spam: las personas no lo ven; si se llena, se descarta el envío -->
+          <div class="campo-trampa" aria-hidden="true">
+            <label for="campo-web">No llenar este campo</label>
+            <input id="campo-web" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+          <p class="form-privacidad">Usaremos tus datos solo para responder tu consulta.</p>
+          <div id="form-estado" class="form-estado" role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER (BL-07) ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h2 class="footer-titulo">Ubicación</h2>
+        <p data-site="direccion">Dirección de ejemplo, Ciudad</p>
+        <p id="ruta" hidden><a id="enlace-ruta" href="#" target="_blank" rel="noopener">Cómo llegar</a></p>
+      </div>
+      <div>
+        <h2 class="footer-titulo">Contacto</h2>
+        <p><span data-site="telefono">(01) 000 0000</span></p>
+        <p><span data-site="correo">correo@ejemplo.com</span></p>
+        <p data-site="horario">Lunes a viernes, 9:00 a 18:00</p>
+      </div>
+      <div>
+        <h2 class="footer-titulo">Redes</h2>
+        <ul class="redes">
+          <li><a href="#" data-red="facebook">Facebook</a></li>
+          <li><a href="#" data-red="instagram">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Mapa (BL-07): se llena desde data.js; si no hay mapa configurado, se oculta -->
+    <div class="container">
+      <div id="contenedor-mapa" class="mapa" hidden></div>
+    </div>
+    <p class="container footer-copy">© <span id="anio"></span> <span data-site="nombre">Nombre del negocio</span></p>
+  </footer>
+
+  <!-- ============ BOTÓN FLOTANTE DE WHATSAPP (BL-06) ============ -->
+  <a class="wa-float" href="#" data-whatsapp target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">WhatsApp</a>
+</body>
+</html>
