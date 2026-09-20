@@ -1,0 +1,445 @@
+/*
+ * styles.css — TPL-001 · Servicios profesionales
+ * Mobile-first. Los valores de :root son PROVISIONALES:
+ * Jorge Ventura (UX/UI) define los colores y tipografías definitivos.
+ * Para cambiar la marca, edita solo las variables de este bloque.
+ */
+:root {
+
+
+  
+  /* Color */
+  --color-texto: #172B4D;
+  --color-texto-suave: #526581;
+  --color-fondo: #FFFFFF;
+  --color-fondo-alt: #F4F7FA;
+  --color-primario: #2563EB;
+  --color-primario-hover: #1D4ED8;
+  --color-acento: #14B8A6;
+  --color-borde: #D9E2EC;
+  --color-whatsapp: #25D366;
+  --color-error: #DC2626;
+  --color-exito: #16A34A;
+
+  --fuente:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  --texto-base: 1rem;
+  --texto-h1: clamp(2rem, 5.5vw, 3.5rem);
+  --texto-h2: clamp(1.5rem, 3.5vw, 2.2rem);
+
+  --espacio: 1rem;
+  --radio: 10px;
+  --ancho-max: 68rem;
+  --alto-header: 4rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-padding-top: var(--alto-header);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: var(--texto-base);
+  line-height: 1.6;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+img { max-width: 100%; height: auto; }
+
+h1, h2 { line-height: 1.2; margin: 0 0 var(--espacio); }
+h1 { font-size: var(--texto-h1); }
+h2 { font-size: var(--texto-h2); }
+p { margin: 0 0 var(--espacio); max-width: 65ch; }
+
+a { color: var(--color-primario); }
+
+:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: var(--espacio);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--espacio);
+  top: -4rem;
+  background: var(--color-primario);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio);
+  z-index: 100;
+}
+.skip-link:focus { top: var(--espacio); }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--color-primario);
+  border-radius: var(--radio);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--color-primario);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--color-primario-hover); border-color: var(--color-primario-hover); }
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primario);
+}
+.btn-secondary:hover { background: var(--color-fondo-alt); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-fondo);
+  border-bottom: 1px solid var(--color-borde);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: var(--alto-header);
+}
+
+.brand {
+  flex: 1;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+.header-cta { order: 1; padding: 0.5rem 0.9rem; }
+
+.nav-toggle {
+  order: 2;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Menú móvil: panel debajo del header */
+.nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-fondo);
+  border-bottom: 1px solid var(--color-borde);
+}
+.nav.is-open { display: block; }
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem var(--espacio);
+}
+.nav a {
+  display: block;
+  padding: 0.75rem 0;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+.nav a:hover { color: var(--color-primario); }
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-block: 3rem 3.5rem;
+  background: var(--color-fondo-alt);
+}
+.hero-texto {
+  font-size: 1.15rem;
+  color: var(--color-texto-suave);
+}
+.hero-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Secciones ---------- */
+.section { padding-block: 3rem; }
+.section-alt { background: var(--color-fondo-alt); }
+
+.grid {
+  display: grid;
+  gap: var(--espacio);
+  grid-template-columns: 1fr;
+}
+
+/* ---------- Tarjetas (servicios; se reutilizan en equipo y testimonios) ---------- */
+.card {
+  padding: 1.25rem;
+  background: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+.section-alt .card { background: var(--color-fondo); }
+
+.card-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: var(--radio);
+  background: var(--color-fondo-alt);
+  font-size: 1.4rem;
+}
+.card-titulo {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+.card-texto {
+  margin: 0;
+  color: var(--color-texto-suave);
+}
+
+/* Equipo (BL-03) */
+.foto-equipo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 1rem;
+  border-radius: var(--radio);
+  object-fit: cover;
+  object-position: center top;
+}
+.foto-iniciales {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-fondo-alt);
+  color: var(--color-primario);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.card-especialidad {
+  margin: 0 0 0.25rem;
+  color: var(--color-primario);
+  font-weight: 600;
+}
+.card-meta {
+  margin: 0 0 0.5rem;
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+/* Testimonios (BL-04) */
+.card-testimonio { margin: 0; }
+.testimonio-texto { margin: 0 0 1rem; }
+.testimonio-texto p { margin: 0; max-width: none; }
+.testimonio-autor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.testimonio-detalle {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+/* Formulario de contacto (BL-05) */
+.form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 36rem;
+}
+.campo label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+.campo input,
+.campo textarea {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--color-texto-suave);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font: inherit;
+}
+.campo textarea { resize: vertical; min-height: 8rem; }
+.campo [aria-invalid="true"] {
+  border-color: var(--color-error);
+  border-width: 2px;
+}
+.error-campo {
+  margin: 0.35rem 0 0;
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+.form .btn { justify-self: start; }
+.form .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.form-privacidad {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+.form-estado {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid;
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+.form-estado-exito { color: var(--color-exito); border-color: var(--color-exito); }
+.form-estado-error { color: var(--color-error); border-color: var(--color-error); }
+.form-estado a { color: inherit; font-weight: 600; }
+
+/* Campo trampa anti-spam: fuera de pantalla, no usa display:none para que los bots lo vean */
+.campo-trampa {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Mapa (BL-07) */
+.mapa {
+  height: 16rem;
+  margin-top: 2rem;
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+.mapa iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Aviso de desarrollo: se elimina cuando cada sección esté lista */
+.pendiente {
+  padding: 0.5rem 0.75rem;
+  border: 1px dashed var(--color-borde);
+  border-radius: var(--radio);
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding-block: 2.5rem 1.5rem;
+  background: var(--color-texto);
+  color: #e8eef0;
+}
+.site-footer a { color: #e8eef0; }
+.footer-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+.footer-titulo {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+.footer-grid p { margin-bottom: 0.25rem; }
+.redes { list-style: none; margin: 0; padding: 0; }
+.redes li { margin-bottom: 0.25rem; }
+.footer-copy {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #b8c5ca;
+}
+.site-footer .pendiente { color: #b8c5ca; border-color: #4a5b65; }
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.wa-float {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  background: var(--color-whatsapp);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.wa-float:hover { filter: brightness(0.92); }
+
+/* ---------- Tablet y escritorio ---------- */
+@media (min-width: 48em) {
+  .hero { padding-block: 5rem 5.5rem; }
+
+  .hero-acciones {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle { display: none; }
+
+  .nav {
+    display: block;
+    position: static;
+    order: 1;
+    border-bottom: 0;
+    background: transparent;
+  }
+  .nav ul {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+  }
+  .nav a { padding: 0.5rem 0; }
+
+  .brand { flex: 0 0 auto; margin-right: auto; }
+  .header-cta { order: 2; }
+
+  .section { padding-block: 4rem; }
+  .mapa { height: 22rem; }
+
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 64em) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
