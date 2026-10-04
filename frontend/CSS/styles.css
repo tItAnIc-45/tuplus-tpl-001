@@ -142,6 +142,8 @@ p { margin: 0 0 1rem; max-width: 65ch; }
 .form-estado { padding: .85rem 1rem; border: 1px solid; border-radius: .45rem; background: var(--color-fondo); overflow-wrap: anywhere; }
 .form-estado-exito { color: var(--color-exito); }
 .form-estado-error { color: var(--color-error); }
+.form-estado-procesando { color: var(--color-texto); }
+.btn[aria-busy="true"] { opacity: .7; cursor: wait; }
 .form-estado a { color: inherit; font-weight: 600; }
 .campo-trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
