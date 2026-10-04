@@ -59,6 +59,52 @@ function iniciarFormulario() {
     status.textContent = t(message);
     status.hidden = false;
   }
+  function setBusy(busy) {
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = busy;
+    button.setAttribute('aria-busy', busy ? 'true' : 'false');
+  }
+  function showWhatsAppFallback() {
+    const note = document.createElement('p');
+    const link = document.createElement('a');
+    link.className = 'prepared-link btn btn-primary';
+    link.href = (typeof construirEnlaceWhatsApp === 'function') ? construirEnlaceWhatsApp() : '#';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = t('Escribir por WhatsApp ↗');
+    status.append(note, link);
+  }
+  async function submitEndpoint() {
+    const endpoint = (typeof SITE !== 'undefined' && SITE.formulario && SITE.formulario.endpoint) || '';
+    if (!endpoint) {
+      messageStatus('No pudimos enviar tu consulta. Escríbenos por WhatsApp mientras lo resolvemos.', 'error');
+      showWhatsAppFallback();
+      return;
+    }
+    setBusy(true);
+    messageStatus('Enviando tu consulta…', 'procesando');
+    try {
+      const data = new FormData(form);
+      data.delete('_gotcha');
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        messageStatus('¡Listo! Recibimos tu consulta y te contactaremos pronto.', 'exito');
+        form.reset();
+      } else {
+        messageStatus('No pudimos enviar tu consulta. Escríbenos por WhatsApp mientras lo resolvemos.', 'error');
+        showWhatsAppFallback();
+      }
+    } catch (err) {
+      messageStatus('No pudimos enviar tu consulta. Escríbenos por WhatsApp mientras lo resolvemos.', 'error');
+      showWhatsAppFallback();
+    } finally {
+      setBusy(false);
+    }
+  }
   function prepareLink() {
     const e = form.elements;
     const line = (label, value) => t(label) + ': ' + value;
@@ -109,7 +155,9 @@ function iniciarFormulario() {
       messageStatus('No pudimos preparar la consulta. Revisa el formulario e inténtalo de nuevo.', 'error');
       return;
     }
-    prepareLink();
+    const canal = (typeof SITE !== 'undefined' && SITE.formulario && SITE.formulario.canal) || 'whatsapp';
+    if (canal === 'endpoint') submitEndpoint();
+    else prepareLink();
   });
   document.addEventListener('tuplus:language-change',() => {
     countryOptions();

@@ -34,8 +34,8 @@ const SITE = {
   // Con canal "whatsapp" se prepara una consulta para que el visitante la revise
   // y envíe. Usa canal "endpoint" si configuras un servicio de formularios.
   formulario: {
-    canal: "whatsapp",
-    endpoint: ""
+    canal: "endpoint",
+    endpoint: "https://formspree.io/f/xgavgdwv"
   },
 
   // Mapa (BL-07). Dos opciones, ambas opcionales:
