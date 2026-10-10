@@ -6,17 +6,26 @@
   <title>Privacidad y uso del sitio | TUPLUS</title>
   <meta name="description" content="Privacidad y uso del sitio">
   <script>try { const t = localStorage.getItem("tpl-tema"); if(t === "dark" || t === "light") document.documentElement.dataset.theme = t; } catch(e) {}</script>
-  <link rel="icon" href="assets/colibri.png" type="image/png">
-  <link rel="stylesheet" href="CSS/styles.css">
-  <link rel="stylesheet" href="CSS/marca.css">
+  
+  <!-- Icono e imágenes compartidas desde CORE -->
+  <link rel="icon" href="../core/assets/colibri.png" type="image/png">
+  
+  <!-- Hojas de estilo compartidas desde CORE -->
+  <link rel="stylesheet" href="../core/CSS/styles.css">
+  <link rel="stylesheet" href="../core/CSS/marca.css">
+  
+  <!-- Hoja de estilo propia de TPL-001 -->
   <link rel="stylesheet" href="CSS/contacto-v3.css">
-  <!-- data.js va ANTES de main.js: main.js lee el objeto SITE -->
+  
+  <!-- Scripts propios de TPL-001 -->
   <script src="JS/data.js" defer></script>
   <script src="JS/main.js" defer></script>
   <script src="JS/contacto.js" defer></script>
-  <script src="JS/visual.js" defer></script>
-  <script src="JS/translations.js" defer></script>
-  <script src="JS/i18n.js" defer></script>
+  
+  <!-- Scripts compartidos desde CORE -->
+  <script src="../core/JS/visual.js" defer></script>
+  <script src="../core/JS/translations.js" defer></script>
+  <script src="../core/JS/i18n.js" defer></script>
 </head>
 <body><a class="skip-link" href="#contenido">Saltar al contenido</a>  <header class="site-header">
     <div class="container header-inner">
