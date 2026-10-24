@@ -9,11 +9,12 @@ Plantilla web reutilizable para servicios profesionales (TPL-001), TUPLUS · CEL
 - **Drive de TUPLUS:** [pegar enlace aquí]
 - **Guía de investigación (Servicios profesionales, Salud y Educación):** [pegar enlace aquí]
 
-## Estado actual
+## Estado de la semana
 
-- **TPL-001 · Servicios profesionales:** versión 1 publicada, a la espera de la aprobación del diseño.
-- **Formulario de contacto:** envía con Formspree y ofrece WhatsApp como respaldo si el envío falla (BL-05, PR #4).
-- **Pendientes de TPL-001:** texto de privacidad y de consentimiento, confirmar la cuenta de Formspree, revisión formal de seguridad con EQU-02, contenido real del cliente y traducción de los mensajes nuevos del formulario.
+- Página principal: propuesta en revisión.
+- TPL-001 Abogados: nivel 1 en revisión.
+- TPL-002 Odontología: nivel 1 en revisión.
+- TPL-003 Educación: en pausa.
 - **En curso:** separar el núcleo compartido de las variantes por familia (ver "Estructura").
 - **Siguientes familias:** TPL-002 (Salud y bienestar) y TPL-003 (Educación y formación).
 
@@ -25,12 +26,11 @@ Plantilla web reutilizable para servicios profesionales (TPL-001), TUPLUS · CEL
 
 ## Estructura del repositorio
 
-Estructura actual:
-
-- `/frontend`: el sitio que se publica (`index.html`, `privacidad.html`, `CSS/`, `JS/`, `assets/`).
-- `/backend`: reservado. TPL-001 es un sitio estático y no usa backend.
-- `/docs`: documentación de arquitectura y planificación (E2).
-- `/.github/workflows/static.yml`: despliegue automático desde `./frontend`.
+## Estructura
+- `core/`: lo compartido (estilos, scripts, logo).
+- `tpl-001/`, `tpl-002/`, `tpl-003/`: cada plantilla por sector, con su carpeta `nivel-1/`.
+- `.github/`: plantilla de Pull Request y publicación automática.
+- `docs/`: arquitectura y planificación.
 
 Propuesta en revisión (núcleo + variantes):
 
